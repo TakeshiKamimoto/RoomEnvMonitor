@@ -5,6 +5,12 @@
     google.charts.load('current', {packages:['corechart', 'line']});
     google.charts.setOnLoadCallback(drawChart);
 	
+    //
+    $(function(){
+
+      //グーグルグラフのライブラリ読み込み完了イベント
+      google.setOnLoadCallback( init );		
+		
       //初期化
       function init(){
 
@@ -91,7 +97,8 @@
           }
 	});
       }
-	
+
+    }
 	  
 </script>
 </head>
