@@ -5,7 +5,16 @@
     google.charts.load('current', {packages:['corechart', 'line']});
     google.charts.setOnLoadCallback(drawChart);
 	
+      //初期化
+      function init(){
 
+        //グラフ描画＋指定秒繰り返す
+        makeGraph();
+        setInterval(function(){
+          makeGraph();
+        },60 * 1000 );
+
+      }
 	
       //グラフの描画
       function makeGraph(){
@@ -81,7 +90,8 @@
         //chart.draw(data,options);
           }
 	});
-      };      
+      }
+	
 	  
 </script>
 </head>
