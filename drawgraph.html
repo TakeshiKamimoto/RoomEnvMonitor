@@ -37,18 +37,18 @@
                 //parseFloat(json[i].discomfort),
                 //parseFloat(json[i].press)/10
               ]);
-            }
+           }
 	
-	    //チャートの描画
-            var data = google.visualization.arrayToDataTable( dataArray );
-	    var options = {
+	   //チャートの描画
+           var data = google.visualization.arrayToDataTable( dataArray );
+	   var options = {
                title: 'Temprature',
                legend: 'none',
                colors: ['red','black'],
                vAxis: {title: "deg.C"}
-            };
-            var chart = new google.visualization.LineChart(document.getElementById('chart1'));
-            chart.draw(data,options);
+           };
+           var chart = new google.visualization.LineChart(document.getElementById('chart1'));
+           chart.draw(data,options);
     
 
     //google.charts.load('current', {packages:['corechart', 'line']});
