@@ -1,37 +1,3 @@
-<?php
-$today  = 'todaydata';
-$csv_dir  = '/home/pi/bme280/data/';
-$temp_file = $today.'_temp.csv';
-$grapgh_t   = '';
-$pres_file = $today.'_pres.csv';
-$grapgh_p   = '';
-$hum_file = $today.'_humd.csv';
-$grapgh_h   = '';
-if (($handle = fopen($csv_dir.$temp_file, "r")) !== false) {
-    while (($line = fgets($handle)) !== false) {
-    $grapgh_t .= '['.rtrim($line).'],'.PHP_EOL;
-    }
-    fclose($handle);
-}else{
-    echo 'no data';
-}
-if (($handle = fopen($csv_dir.$pres_file, "r")) !== false) {
-    while (($line = fgets($handle)) !== false) {
-    $grapgh_p .= '['.rtrim($line).'],'.PHP_EOL;
-    }
-    fclose($handle);
-}else{
-    echo 'no data';
-}
-if (($handle = fopen($csv_dir.$hum_file, "r")) !== false) {
-    while (($line = fgets($handle)) !== false) {
-    $grapgh_h .= '['.rtrim($line).'],'.PHP_EOL;
-    }
-    fclose($handle);
-}else{
-    echo 'no data';
-}
-?>
 <html>
 <head>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
