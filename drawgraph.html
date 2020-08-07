@@ -34,7 +34,7 @@
           success: function(json){
 
             //タイトル作成 for Graph1 ------------------------------------------------------
-            var dataArray = [[
+            var dataArray1 = [[
               'Date',
               'Temp.',
               'Temp.(outside)',
@@ -44,26 +44,26 @@
             var len = json.length;
             for(var i=0; i < len; i++){
               //データーに追加
-              dataArray.push([
+              dataArray1.push([
                 new Date(json[i].timestamp.replace(/\-/g, "/")),
                 parseFloat(json[i].temp),
                 parseFloat(json[i].temp_m),
               ]);
             }
             //チャートの描画
-            var data = google.visualization.arrayToDataTable( dataArray );
+            var data = google.visualization.arrayToDataTable( dataArray1 );
 	          var options = {
                title: 'Temprature',
                legend: 'none',
                colors: ['red','black'],
                vAxis: {title: "deg.C"}
             };
-            var chart = new google.visualization.LineChart(document.getElementById('chart1'));
-            chart.draw(data,options);
+            var chart1 = new google.visualization.LineChart(document.getElementById('chart1'));
+            chart1.draw(data,options);
             
             
             //タイトル作成 for graph2 ------------------------------------------------------
-            var dataArray = [[
+            var dataArray2 = [[
               'Date',
               'Pressure',
               'Pressure(outside)',
@@ -73,34 +73,52 @@
             var len = json.length;
             for(var i=0; i < len; i++){
               //データーに追加
-              dataArray.push([
+              dataArray2.push([
                 new Date(json[i].timestamp.replace(/\-/g, "/")),
                 parseFloat(json[i].press),
                 parseFloat(json[i].press_m),
               ]);
             }
             //チャートの描画
-            var data = google.visualization.arrayToDataTable( dataArray );
+            var data = google.visualization.arrayToDataTable( dataArray2 );
             var options = {
               title: 'Pressure',
               legend: 'none',
               colors: ['blue','black'],
               vAxis: {title: "hPa"}
             };
-            var chart = new google.visualization.LineChart(document.getElementById('chart2'));
-            chart.draw(data,options);
+            var chart2 = new google.visualization.LineChart(document.getElementById('chart2'));
+            chart2.draw(data,options);
     
 
 
+            //タイトル作成 for graph3 ------------------------------------------------------
+            var dataArray3 = [[
+              'Date',
+              'Humidity',
+              'Humidity(outside)',
+            ]];
 
-    
+            //jsonデーターの中身取得
+            var len = json.length;
+            for(var i=0; i < len; i++){
+              //データーに追加
+              dataArray3.push([
+                new Date(json[i].timestamp.replace(/\-/g, "/")),
+                parseFloat(json[i].humid),
+                parseFloat(json[i].humid_m),
+              ]);
+            }
+            //チャートの描画
+            var data = google.visualization.arrayToDataTable( dataArray3 );
             var options = {
               title: 'Humidity',
               legend: 'none',
               colors: ['green','black'],
                vAxis: {title: "%RH"}
             };
-
+            var chart3 = new google.visualization.LineChart(document.getElementById('chart3'));
+            chart3.draw(data,options);
 
           }
 		
@@ -116,6 +134,7 @@
 
 <div id="chart1"></div>
 <div id="chart2"></div>
+<div id="chart3"></div>
 
 </body>
 </html>
