@@ -47,13 +47,12 @@ if (($handle = fopen($csv_dir.$hum_file, "r")) !== false) {
         data.addRows([
             <?php echo $grapgh_t; ?>
         ]);
-
-    var options = {
-        title: 'Temprature',
-        legend: 'none',
-        colors: ['red','black'],
-        vAxis: {title: "deg.C"}
-    };
+	var options = {
+           title: 'Temprature',
+           legend: 'none',
+           colors: ['red','black'],
+           vAxis: {title: "deg.C"}
+        };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart1'));
         chart.draw(data,options);
@@ -70,15 +69,12 @@ if (($handle = fopen($csv_dir.$hum_file, "r")) !== false) {
         data.addRows([
             <?php echo $grapgh_p; ?>
         ]);
-
-    var options = {
-        title: 'Pressure',
-        legend: 'none',
-        colors: ['blue','black'],
-        vAxis: {
-			title: "hPa"
-		}
-    };
+        var options = {
+           title: 'Pressure',
+           legend: 'none',
+           colors: ['blue','black'],
+           vAxis: {title: "hPa"}
+        };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart2'));
         chart.draw(data,options);
@@ -95,15 +91,12 @@ if (($handle = fopen($csv_dir.$hum_file, "r")) !== false) {
         data.addRows([
             <?php echo $grapgh_h; ?>
         ]);
-
-    var options = {
-        title: 'Humidity',
-        legend: 'none',
-        colors: ['green','black'],
-        vAxis: {
-			title: "%RH"
-		}
-     };
+        var options = {
+           title: 'Humidity',
+           legend: 'none',
+           colors: ['green','black'],
+           vAxis: {title: "%RH"}
+        };
 
         var chart = new google.visualization.LineChart(document.getElementById('chart3'));
         chart.draw(data,options);
