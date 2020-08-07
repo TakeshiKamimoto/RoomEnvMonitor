@@ -1,9 +1,10 @@
 <html>
 <head>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {packages:['corechart', 'line']});
-    google.charts.setOnLoadCallback(drawChart);
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
 	
     //
     $(function(){
@@ -32,31 +33,26 @@
           dataType: 'json',
           success: function(json){
 
-            //タイトル作成
+            //タイトル作成 for Graph1 ------------------------------------------------------
             var dataArray = [[
               'Date',
               'Temp.',
               'Temp.(outside)',
-             // 'Humidity',
-             // 'Discomfort',
-             // 'Press.',
             ]];
 
             //jsonデーターの中身取得
+            var len = json.length;
+            for(var i=0; i < len; i++){
               //データーに追加
               dataArray.push([
                 new Date(json[i].timestamp.replace(/\-/g, "/")),
                 parseFloat(json[i].temp),
                 parseFloat(json[i].temp_m),
-                //parseFloat(json[i].humid),
-                //parseFloat(json[i].discomfort),
-                //parseFloat(json[i].press)/10
               ]);
-           
-	
-	   //チャートの描画
+            }
+            //チャートの描画
             var data = google.visualization.arrayToDataTable( dataArray );
-	    var options = {
+	          var options = {
                title: 'Temprature',
                legend: 'none',
                colors: ['red','black'],
@@ -64,25 +60,38 @@
             };
             var chart = new google.visualization.LineChart(document.getElementById('chart1'));
             chart.draw(data,options);
-    
+            
+            
+            //タイトル作成 for graph2 ------------------------------------------------------
+            var dataArray = [[
+              'Date',
+              'Pressure',
+              'Pressure(outside)',
+            ]];
 
-    //google.charts.load('current', {packages:['corechart', 'line']});
-    //google.charts.setOnLoadCallback(drawChart2);
-
-    
+            //jsonデーターの中身取得
+            var len = json.length;
+            for(var i=0; i < len; i++){
+              //データーに追加
+              dataArray.push([
+                new Date(json[i].timestamp.replace(/\-/g, "/")),
+                parseFloat(json[i].press),
+                parseFloat(json[i].press_m),
+              ]);
+            }
+            //チャートの描画
+            var data = google.visualization.arrayToDataTable( dataArray );
             var options = {
               title: 'Pressure',
               legend: 'none',
               colors: ['blue','black'],
               vAxis: {title: "hPa"}
             };
-
-        //var chart = new google.visualization.LineChart(document.getElementById('chart2'));
-        //chart.draw(data,options);
+            var chart = new google.visualization.LineChart(document.getElementById('chart2'));
+            chart.draw(data,options);
     
 
-    //google.charts.load('current', {packages:['corechart', 'line']});
-    //google.charts.setOnLoadCallback(drawChart3);
+
 
     
             var options = {
@@ -92,11 +101,10 @@
                vAxis: {title: "%RH"}
             };
 
-        //var chart = new google.visualization.LineChart(document.getElementById('chart3'));
-        //chart.draw(data,options);
+
           }
 		
-	});
+	      });
 	      
       }
 
@@ -107,8 +115,7 @@
 <body>
 
 <div id="chart1"></div>
-//<div id="chart2"></div>
-//<div id="chart3"></div>
+<div id="chart2"></div>
 
 </body>
 </html>
