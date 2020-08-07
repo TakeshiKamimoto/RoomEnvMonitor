@@ -4,6 +4,48 @@
 <script type="text/javascript">
     google.charts.load('current', {packages:['corechart', 'line']});
     google.charts.setOnLoadCallback(drawChart);
+	
+	
+	
+	
+	
+      //グラフの描画
+      function makeGraph(){
+
+        //JSONデーターの取得
+        $.ajax({
+          type: 'GET',
+          url: './print2.php',
+          dataType: 'json',
+          success: function(json){
+
+            //タイトル作成
+            var dataArray = [[
+              'Date',
+              'Temp.',
+              'Temp.(outside)',
+             // 'Humidity',
+             // 'Discomfort',
+             // 'Press.',
+            ]];
+
+            //jsonデーターの中身取得
+              //データーに追加
+              dataArray.push([
+                new Date(json[i].timestamp.replace(/\-/g, "/")),
+                parseFloat(json[i].temp),
+                parseFloat(json[i].temp_m),
+                //parseFloat(json[i].humid),
+                //parseFloat(json[i].discomfort),
+                //parseFloat(json[i].press)/10
+              ]);
+            }
+	
+	
+	
+	
+	
+	
 
     function drawChart() {
         var data = new google.visualization.DataTable();
